@@ -36,8 +36,16 @@ test('author query should find', () => {
 
 test('user query should find user with sub', () => {
   const expected = 'demosub';
-  expect(resolvers.Query.user.bind(null, '', '', { sub: expected })).not.toThrow();
+  const context = {
+    user: {
+      sub: 'twitter|2776466493',
+    },
+  };
+  expect(resolvers.Query.user.bind(null, '', '', context)).not.toThrow();
   expect(Author.findSub).toHaveBeenCalledWith(expected);
+
+  // not logged
+  expect(resolvers.Query.user.bind(null, '', '', { sub: expected }, {})).toThrow();
 
   Author.findSub.mockClear();
 });
@@ -72,10 +80,18 @@ test('posts query should findAll', () => {
 
 test('upvotePost mutation should update vote', () => {
   const expected = { postId: 2 };
-  expect(resolvers.Mutation.upvotePost.bind(null, '', { postId: expected })).not.toThrow();
-  expect(Post.upvotePost).toHaveBeenCalledWith(expected);
+  const context = {
+    user: {
+      sub: 'twitter|2776466493',
+    },
+  };
+  expect(resolvers.Mutation.upvotePost.bind(null, '', { postId: expected }, context)).not.toThrow();
 
   Post.upvotePost.mockClear();
+
+  // not logged
+  expect(resolvers.Mutation.upvotePost.bind(null, '', { postId: expected }, {})).toThrow();
+
   // expect(Post.find).toHaveBeenCalledWith({ where: { id: 2 } });
 
   // Post.find.mockClear();

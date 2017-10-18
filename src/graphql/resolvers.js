@@ -10,9 +10,11 @@ const resolvers = {
     posts(_, args) {
       return Post.findAll(args.limit, args.offset, omit(args, ['offset', 'limit']));
     },
-    user(_, __, context) {
-      console.log(context.user); // eslint-disable-line no-console
-      Author.findSub('demosub');
+    user(_, __, { user }) {
+      if (user && user.sub) {
+        return Author.findSub('demosub');
+      }
+      throw Error('need to be logged in');
     },
     author(_, { id }) {
       return Author.find(id);
@@ -22,7 +24,12 @@ const resolvers = {
     },
   },
   Mutation: {
-    upvotePost: (_, { postId }) => Post.upvotePost(postId),
+    upvotePost: (_, { postId }, { user }) => {
+      if (user && user.sub) {
+        return Post.upvotePost(postId);
+      }
+      throw Error('need to be logged in');
+    },
   },
   Author: {
     posts(author) {
