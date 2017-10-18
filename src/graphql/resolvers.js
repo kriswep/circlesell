@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
 
-import { Author, Post } from './connectors';
+import { Author, Post } from '../model/connectors';
 
 const resolvers = {
   Query: {

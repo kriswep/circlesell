@@ -7,16 +7,18 @@
     "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
     "build:client": "node ./scripts/build-client.js",
     "build:server": "babel src -d lib",
-    "coverage": "jest --coverage && node ./scripts/coverage-client.js && codecov",
+    "coverage":
+      "jest --coverage && node ./scripts/coverage-client.js && codecov",
     "coverage:old": "jest --coverage",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "node ./scripts/start-client.js",
     "dev:server": "nodemon ./src/server.js --exec babel-node -e js",
-    "dev:server:debug": "nodemon ./src/server.js --exec babel-node -e js --inspect",
+    "dev:server:debug":
+      "nodemon ./src/server.js --exec babel-node -e js --inspect",
     "format": "prettier-eslint \"src/**/*.js\" --write",
     "lint": "eslint \"./src\"",
-    "seed": "babel-node \"./src/seed.js\"",
-    "seedBuild": "node \"./lib/seed.js\"",
+    "seed": "babel-node \"./src/model/seed.js\"",
+    "seedBuild": "node \"./lib/model/seed.js\"",
     "prestart": "npm run seedBuild",
     "start": "node \"./lib/server.js\"",
     "test": "jest",
@@ -43,22 +45,15 @@
   },
   "eslintConfig": {
     "extends": "airbnb",
-    "plugins": [
-      "import"
-    ],
+    "plugins": ["import"],
     "rules": {
       "react/jsx-filename-extension": [
         1,
         {
-          "extensions": [
-            ".js",
-            ".jsx"
-          ]
+          "extensions": [".js", ".jsx"]
         }
       ],
-      "react/prop-types": [
-        0
-      ]
+      "react/prop-types": [0]
     }
   },
   "babel": {
@@ -76,16 +71,8 @@
   "jest": {
     "rootDir": "./src",
     "coverageDirectory": "../coverage",
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**"
-    ],
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text",
-      "text-summary"
-    ],
+    "collectCoverageFrom": ["**/*.{js,jsx}", "!**/node_modules/**"],
+    "coverageReporters": ["json", "lcov", "text", "text-summary"],
     "coverageThreshold": {
       "global": {
         "branches": 95,

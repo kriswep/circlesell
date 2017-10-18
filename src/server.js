@@ -5,8 +5,8 @@ import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import bodyParser from 'body-parser';
 import { makeExecutableSchema } from 'graphql-tools';
 
-import typeDefs from './schema';
-import resolvers from './resolvers';
+import typeDefs from './graphql/schema';
+import resolvers from './graphql/resolvers';
 
 const PORT = process.env.PORT || 3010;
 const IP = process.env.IP || '0.0.0.0';

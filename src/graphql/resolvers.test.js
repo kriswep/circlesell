@@ -1,12 +1,12 @@
 /* globals test expect jest */
-import { Author, Post } from './connectors';
+import { Author, Post } from '../model/connectors';
 import resolvers from './resolvers';
 
 global.promiseResolver = () => null;
 global.promise = new Promise((resolve) => {
   global.promiseResolver = resolve;
 });
-jest.mock('./connectors', () => ({
+jest.mock('../model/connectors', () => ({
   Author: {
     findSub: jest.fn(),
     find: jest.fn(),
