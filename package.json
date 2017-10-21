@@ -10,6 +10,13 @@
     "coverage":
       "jest --coverage && node ./scripts/coverage-client.js && codecov",
     "coverage:old": "jest --coverage",
+    "db:createModel":
+      "babel-node \"./node_modules/.bin/sequelize\" model:generate",
+    "db:createSeed":
+      "babel-node \"./node_modules/.bin/sequelize\" seed:generate",
+    "db:migrate": "babel-node \"./node_modules/.bin/sequelize\" db:migrate",
+    "db:seed":
+      "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:all",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "node ./scripts/start-client.js",
     "dev:server": "nodemon ./src/index.js",
@@ -41,7 +48,8 @@
     "jest": "^21.2.1",
     "nodemon": "^1.11.0",
     "prettier-eslint-cli": "^4.0.2",
-    "regenerator-runtime": "^0.11.0"
+    "regenerator-runtime": "^0.11.0",
+    "sequelize-cli": "^3.0.0"
   },
   "eslintConfig": {
     "extends": "airbnb",
