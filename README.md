@@ -6,5 +6,16 @@ Just taking graphql with apollos grahpql-tools for a testdrive. Using a sequeliz
 
 Let's see...
 
+## Scripts
+
+Create new model (and migration): `npm run db:createModel -- --name Model --attributes field1:string,field2:string`
+Create new migration: `npm run db:createMigration -- --name migration-name`
+Run migrations: `npm run db:migrate`
+Create new seed: `npm run db:createSeed -- --name Seed`
+Seed DB: `npm run db:seed`
+
+
 ### Note
 In order to test the authentication in graphiql, you need a graphiql app which lets you set headers, e.g https://github.com/skevy/graphiql-app
+
+

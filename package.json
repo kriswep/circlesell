@@ -10,6 +10,8 @@
     "coverage":
       "jest --coverage && node ./scripts/coverage-client.js && codecov",
     "coverage:old": "jest --coverage",
+    "db:createMigration":
+      "babel-node \"./node_modules/.bin/sequelize\" migration:generate",
     "db:createModel":
       "babel-node \"./node_modules/.bin/sequelize\" model:generate",
     "db:createSeed":
@@ -20,8 +22,7 @@
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "node ./scripts/start-client.js",
     "dev:server": "nodemon ./src/index.js",
-    "dev:server:debug":
-      "nodemon ./src/server.js --exec babel-node -e js --inspect",
+    "dev:server:debug": "nodemon --inspect ./src/index.js ",
     "format": "prettier-eslint \"src/**/*.js\" --write",
     "lint": "eslint \"./src\"",
     "seed": "babel-node \"./src/model/seed.js\"",

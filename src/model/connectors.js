@@ -1,5 +1,6 @@
 // https://dev-blog.apollodata.com/tutorial-building-a-graphql-server-cddaa023c035
 import { AuthorDb, PostDb } from './db';
+import db from '../model';
 
 const Author = {
   findSub(sub) {
@@ -44,4 +45,36 @@ const Post = {
   },
 };
 
-export { Author, Post };
+const Manufacturer = {
+  find(id) {
+    return db.Manufacturer.find({ where: { id } });
+  },
+  findAll(limit, offset, args) {
+    return db.Manufacturer.findAll({
+      limit,
+      offset,
+      where: args,
+    });
+  },
+  getProducts(manufacturer) {
+    return manufacturer.getProducts();
+  },
+};
+
+const Product = {
+  find(id) {
+    return db.Product.find({ where: { id } });
+  },
+  findAll(limit, offset, args) {
+    return db.Product.findAll({
+      limit,
+      offset,
+      where: args,
+    });
+  },
+  getManufacturer(post) {
+    return post.getManufacturer();
+  },
+};
+
+export { Author, Post, Manufacturer, Product };

@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
 
-import { Author, Post } from '../model/connectors';
+import { Author, Post, Manufacturer, Product } from '../model/connectors';
 
 const resolvers = {
   Query: {
@@ -22,6 +22,18 @@ const resolvers = {
     authors(_, args) {
       return Author.findAll(args.limit, args.offset, omit(args, ['offset', 'limit']));
     },
+    manufacturer(_, { id }) {
+      return Manufacturer.find(id);
+    },
+    manufacturers(_, args) {
+      return Manufacturer.findAll(args.limit, args.offset, omit(args, ['offset', 'limit']));
+    },
+    product(_, { id }) {
+      return Product.find(id);
+    },
+    products(_, args) {
+      return Product.findAll(args.limit, args.offset, omit(args, ['offset', 'limit']));
+    },
   },
   Mutation: {
     upvotePost: (_, { postId }, { user }) => {
@@ -39,6 +51,16 @@ const resolvers = {
   Post: {
     author(post) {
       return post.getAuthor();
+    },
+  },
+  Manufacturer: {
+    products(manufacturer) {
+      return manufacturer.getProducts();
+    },
+  },
+  Product: {
+    manufacturer(product) {
+      return product.getManufacturer();
     },
   },
 };

@@ -21,6 +21,19 @@ const typeDefs = `
     votes: Int
   }
 
+  type Manufacturer {
+    id: Int!
+    name: String
+    products: [Product] # the list of Posts by this author
+  }
+
+  type Product {
+    id: Int!
+    name: String
+    description: String
+    manufacturer: Manufacturer
+  }
+
   # the schema allows the following query:
   type Query {
     user: Author,
@@ -28,6 +41,10 @@ const typeDefs = `
     post(id: Int!): Post
     authors(offset: Int!, limit: Int!, id: Int, firstName: String, lastName: String): [Author]
     author(id: Int!): Author
+    manufacturers(offset: Int!, limit: Int!, id: Int, name: String): [Manufacturer]
+    manufacturer(id: Int!): Manufacturer
+    products(offset: Int!, limit: Int!, id: Int, name: String): [Product]
+    product(id: Int!): Product
   }
 
   # this schema allows the following mutation:

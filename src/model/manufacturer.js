@@ -1,6 +1,7 @@
+import { ProductFactory } from './product';
 
-module.exports = (sequelize, DataTypes) => {
-  const Manufacturer = sequelize.define(
+export const ManufacturerFactory = (sequelize, DataTypes) =>
+  sequelize.define(
     'Manufacturer',
     {
       name: DataTypes.STRING,
@@ -13,5 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   );
+
+export default (sequelize, DataTypes) => {
+  const Manufacturer = ManufacturerFactory(sequelize, DataTypes);
+  const Product = ProductFactory(sequelize, DataTypes);
+
+  Manufacturer.hasMany(Product);
+
   return Manufacturer;
 };
