@@ -1,25 +1,14 @@
-import { ProductFactory } from './product';
-
 export const ManufacturerFactory = (sequelize, DataTypes) =>
-  sequelize.define(
-    'Manufacturer',
-    {
-      name: DataTypes.STRING,
-    },
-    {
-      classMethods: {
-        associate(models) {
-          // associations can be defined here
-        },
-      },
-    },
-  );
+  sequelize.define('Manufacturer', {
+    name: DataTypes.STRING,
+  });
 
 export default (sequelize, DataTypes) => {
   const Manufacturer = ManufacturerFactory(sequelize, DataTypes);
-  const Product = ProductFactory(sequelize, DataTypes);
 
-  Manufacturer.hasMany(Product);
+  Manufacturer.associate = (models) => {
+    Manufacturer.hasMany(models.Product);
+  };
 
   return Manufacturer;
 };

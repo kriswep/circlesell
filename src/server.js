@@ -71,23 +71,24 @@ server.use(
     endpointURL: '/graphql',
     query: `# Welcome to GraphiQL
 {
-  author(id:1){
-    id
-    firstName
+  manufacturers(limit:100, offset: 0){
+    id,
+    name,
+    products{
+      id
+      name
+      description
+    }
   }
-#  authors(limit:10,offset:5){
-#    id
-#    firstName
-#  }
-  post(id:1){
-    title
-    text
-    votes
+  products(limit:100, offset: 0){
+    id,
+    name,
+    description
+    manufacturer{
+      id
+      name
+    }
   }
-#  posts(limit:10,offset:5){
-#    id
-#    title
-#  }
 }`,
   }),
 );

@@ -32,6 +32,13 @@ const typeDefs = `
     name: String
     description: String
     manufacturer: Manufacturer
+    amount: Quantity
+  }
+
+  type Quantity {
+    id: Int!
+    amount: Int
+    product: Product
   }
 
   # the schema allows the following query:
@@ -45,6 +52,8 @@ const typeDefs = `
     manufacturer(id: Int!): Manufacturer
     products(offset: Int!, limit: Int!, id: Int, name: String): [Product]
     product(id: Int!): Product
+    quantitys(offset: Int!, limit: Int!, id: Int, name: String): [Quantity]
+    quantity(id: Int!): Quantity
   }
 
   # this schema allows the following mutation:

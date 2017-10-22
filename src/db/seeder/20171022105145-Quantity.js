@@ -7,13 +7,20 @@ export default {
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
 
+      Example:
+      return queryInterface.bulkInsert('Person', [{
+        name: 'John Doe',
+        isBetaMember: false
+      }], {});
     */
+
     queryInterface.bulkInsert(
-      'Manufacturers',
+      'Quantities',
       times(10, number => ({
-        name: casual.company_name,
+        amount: casual.integer(),
         createdAt: new Date(),
         updatedAt: new Date(),
+        ProductId: number + 1,
       })),
       {},
     ),
@@ -22,6 +29,9 @@ export default {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
+
+      Example:
+      return queryInterface.bulkDelete('Person', null, {});
     */
-    queryInterface.bulkDelete('Manufacturers', null, {}),
+    queryInterface.bulkDelete('Quantities', null, {}),
 };

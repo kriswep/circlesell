@@ -17,8 +17,12 @@
     "db:createSeed":
       "babel-node \"./node_modules/.bin/sequelize\" seed:generate",
     "db:migrate": "babel-node \"./node_modules/.bin/sequelize\" db:migrate",
+    "db:migrate:undo":
+      "babel-node \"./node_modules/.bin/sequelize\" db:migrate:undo:all",
     "db:seed":
       "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:all",
+    "db:seed:undo":
+      "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:undo:all",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "node ./scripts/start-client.js",
     "dev:server": "nodemon ./src/index.js",

@@ -75,6 +75,25 @@ const Product = {
   getManufacturer(post) {
     return post.getManufacturer();
   },
+  getAmount(post) {
+    return post.getQuantity();
+  },
 };
 
-export { Author, Post, Manufacturer, Product };
+const Quantity = {
+  find(id) {
+    return db.Quantity.find({ where: { id } });
+  },
+  findAll(limit, offset, args) {
+    return db.Quantity.findAll({
+      limit,
+      offset,
+      where: args,
+    });
+  },
+  getProduct(quantity) {
+    return quantity.getProduct();
+  },
+};
+
+export { Author, Post, Manufacturer, Product, Quantity };
