@@ -7,22 +7,15 @@
     "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
     "build:client": "node ./scripts/build-client.js",
     "build:server": "babel src -d lib",
-    "coverage":
-      "jest --coverage && node ./scripts/coverage-client.js && codecov",
+    "coverage": "jest --coverage && node ./scripts/coverage-client.js && codecov",
     "coverage:old": "jest --coverage",
-    "db:createMigration":
-      "babel-node \"./node_modules/.bin/sequelize\" migration:generate",
-    "db:createModel":
-      "babel-node \"./node_modules/.bin/sequelize\" model:generate",
-    "db:createSeed":
-      "babel-node \"./node_modules/.bin/sequelize\" seed:generate",
+    "db:createMigration": "babel-node \"./node_modules/.bin/sequelize\" migration:generate",
+    "db:createModel": "babel-node \"./node_modules/.bin/sequelize\" model:generate",
+    "db:createSeed": "babel-node \"./node_modules/.bin/sequelize\" seed:generate",
     "db:migrate": "babel-node \"./node_modules/.bin/sequelize\" db:migrate",
-    "db:migrate:undo":
-      "babel-node \"./node_modules/.bin/sequelize\" db:migrate:undo:all",
-    "db:seed":
-      "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:all",
-    "db:seed:undo":
-      "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:undo:all",
+    "db:migrate:undo": "babel-node \"./node_modules/.bin/sequelize\" db:migrate:undo:all",
+    "db:seed": "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:all",
+    "db:seed:undo": "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:undo:all",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "node ./scripts/start-client.js",
     "dev:server": "nodemon ./src/index.js",
@@ -58,15 +51,22 @@
   },
   "eslintConfig": {
     "extends": "airbnb",
-    "plugins": ["import"],
+    "plugins": [
+      "import"
+    ],
     "rules": {
       "react/jsx-filename-extension": [
         1,
         {
-          "extensions": [".js", ".jsx"]
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
         }
       ],
-      "react/prop-types": [0]
+      "react/prop-types": [
+        0
+      ]
     }
   },
   "babel": {
@@ -84,8 +84,16 @@
   "jest": {
     "rootDir": "./src",
     "coverageDirectory": "../coverage",
-    "collectCoverageFrom": ["**/*.{js,jsx}", "!**/node_modules/**"],
-    "coverageReporters": ["json", "lcov", "text", "text-summary"],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 95,
@@ -107,6 +115,7 @@
     "graphql-tools": "^2.5.1",
     "jwks-rsa": "^1.1.1",
     "lodash": "^4.17.4",
+    "merge-graphql-schemas": "^1.2.0",
     "sequelize": "^4.15.0",
     "serve-static": "^1.12.3",
     "sqlite3": "^3.1.8"
