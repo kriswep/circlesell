@@ -8,7 +8,15 @@ export default {
         type: Sequelize.INTEGER,
       },
       amount: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
+        validate: {
+          min: 0,
+          // isPositive(value) {
+          //   if (value < 0) {
+          //     throw new Error('Only positive amount is allowed!');
+          //   }
+          // },
+        },
       },
       createdAt: {
         allowNull: false,

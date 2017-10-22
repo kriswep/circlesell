@@ -17,7 +17,7 @@ export default {
     queryInterface.bulkInsert(
       'Quantities',
       times(10, number => ({
-        amount: casual.integer(),
+        amount: Math.abs(casual.integer()),
         createdAt: new Date(),
         updatedAt: new Date(),
         ProductId: number + 1,
