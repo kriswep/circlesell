@@ -61,21 +61,20 @@ const resolvers = {
   },
   Manufacturer: {
     products(manufacturer) {
-      return manufacturer.getProducts();
+      return Manufacturer.getProducts(manufacturer);
     },
   },
   Product: {
     manufacturer(product) {
-      return product.getManufacturer();
+      return Product.getManufacturer(product);
     },
     amount(product) {
-      return product.getQuantity();
+      return Product.getAmount(product);
     },
   },
   Quantity: {
     product(quantity) {
-      return quantity.getProduct();
-      // return Quantity.getProduct(quantity);
+      return Quantity.getProduct(quantity);
     },
   },
 };
