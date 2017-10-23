@@ -10,11 +10,9 @@ module.exports = {
   },
   test: {
     // TODO
-    username: process.env.CI_DB_USERNAME,
-    password: process.env.CI_DB_PASSWORD,
-    database: process.env.CI_DB_NAME,
-    host: '127.0.0.1',
-    dialect: 'mysql',
+    dialect: 'sqlite',
+    storage: path.join(__dirname, '../dev.sqlite'),
+    database: 'dev',
     operatorsAliases: false,
   },
   production: {
