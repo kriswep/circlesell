@@ -1,6 +1,7 @@
 // https://dev-blog.apollodata.com/tutorial-building-a-graphql-server-cddaa023c035
 import { AuthorDb, PostDb } from './db';
 import db from '../model';
+// import quantity from './quantity';
 
 const Author = {
   findSub(sub) {
@@ -93,6 +94,14 @@ const Quantity = {
   },
   getProduct(quantity) {
     return quantity.getProduct();
+  },
+  setQuantity(id, amount) {
+    return db.Quantity.find({ where: { id } }).then(quantity =>
+      quantity
+        .update({
+          amount,
+        })
+        .then(() => db.Quantity.find({ where: { id } })));
   },
 };
 
