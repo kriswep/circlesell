@@ -1,7 +1,7 @@
 {
-  "name": "graphql-testdrive",
-  "version": "1.0.0",
-  "description": "testdriving graphql server",
+  "name": "circlesell",
+  "version": "0.0.1",
+  "description": "open and beautiful e-commerce platform",
   "main": "index.js",
   "scripts": {
     "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
@@ -15,7 +15,8 @@
     "db:migrate": "babel-node \"./node_modules/.bin/sequelize\" db:migrate",
     "db:migrate:undo": "babel-node \"./node_modules/.bin/sequelize\" db:migrate:undo:all",
     "db:seed": "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:all",
-    "db:seed:undo": "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:undo:all",
+    "db:seed:undo":
+      "NODE_ENV=development babel-node \"./node_modules/.bin/sequelize\" db:seed:undo:all",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "node ./scripts/start-client.js",
     "dev:server": "nodemon ./src/index.js",
@@ -51,22 +52,15 @@
   },
   "eslintConfig": {
     "extends": "airbnb",
-    "plugins": [
-      "import"
-    ],
+    "plugins": ["import"],
     "rules": {
       "react/jsx-filename-extension": [
         1,
         {
-          "extensions": [
-            ".js",
-            ".jsx"
-          ]
+          "extensions": [".js", ".jsx"]
         }
       ],
-      "react/prop-types": [
-        0
-      ]
+      "react/prop-types": [0]
     }
   },
   "babel": {
@@ -84,16 +78,8 @@
   "jest": {
     "rootDir": "./src",
     "coverageDirectory": "../coverage",
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**"
-    ],
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text",
-      "text-summary"
-    ],
+    "collectCoverageFrom": ["**/*.{js,jsx}", "!**/node_modules/**"],
+    "coverageReporters": ["json", "lcov", "text", "text-summary"],
     "coverageThreshold": {
       "global": {
         "branches": 95,
