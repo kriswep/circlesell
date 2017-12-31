@@ -5,8 +5,8 @@ import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import bodyParser from 'body-parser';
 import { makeExecutableSchema } from 'graphql-tools';
 
-import typeDefs from './graphql/schema';
-import resolvers from './graphql/resolvers';
+import typeDefs from './schema';
+import resolvers from './resolvers';
 
 const PORT = process.env.PORT || 3010;
 const IP = process.env.IP || '0.0.0.0';
@@ -71,21 +71,28 @@ server.use(
     endpointURL: '/graphql',
     query: `# Welcome to GraphiQL
 {
-  manufacturers(limit:100, offset: 0){
-    id,
-    name,
-    products{
+  manufacturers(limit: 100, offset: 0) {
+    id
+    name
+    products {
       id
       name
       description
     }
   }
-  products(limit:100, offset: 0){
-    id,
-    name,
+  products(limit: 100, offset: 0) {
+    id
+    name
     description
-    manufacturer{
+    manufacturer {
       id
+      name
+    }
+  }
+  quantitys(limit: 100, offset: 0) {
+    id
+    amount
+    product {
       name
     }
   }

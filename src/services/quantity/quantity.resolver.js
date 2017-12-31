@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
 
-import { Quantity } from '../../model/connectors';
+import Quantity from './connector';
 
 export default {
   Query: {

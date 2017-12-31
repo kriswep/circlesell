@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
 
-import { Manufacturer } from '../../model/connectors';
+import Manufacturer from './connector';
 
 const resolvers = {
   Query: {
