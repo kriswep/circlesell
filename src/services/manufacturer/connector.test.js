@@ -1,49 +1,47 @@
-/* globals test expect jest */
+/* globals describe test expect jest */
 import Manufacturer from './connector';
-// import ManufacturerDb from '../../model/manufacturer';
+import { Manufacturer as ManufacturerDb } from '../../model';
 
 global.promiseResolver = () => null;
 global.promise = new Promise((resolve) => {
   global.promiseResolver = resolve;
 });
-jest.mock('../../model/manufacturer', () => ({
-  ManufacturerDb: {
+jest.mock('../../model', () => ({
+  Manufacturer: {
     find: jest.fn(),
     findAll: jest.fn(),
   },
-  // PostDb: {
-  //   find: jest.fn(() => global.promise),
-  //   findAll: jest.fn(),
-  // },
 }));
 
-test('connectors should define Manufacturer', () => {
-  expect(Manufacturer).toBeDefined();
+describe('Manufacturer Connector', () => {
+  test('should define Manufacturer', () => {
+    expect(Manufacturer).toBeDefined();
+  });
+
+  test('should find from db model', () => {
+    const expected = 1;
+    expect(Manufacturer.find.bind(null, expected)).not.toThrow();
+    expect(ManufacturerDb.find).toHaveBeenCalledWith({ where: { id: expected } });
+    ManufacturerDb.find.mockClear();
+  });
+
+  test('should find from db model', () => {
+    const expected = 1;
+    expect(Manufacturer.find.bind(null, expected)).not.toThrow();
+    expect(ManufacturerDb.find).toHaveBeenCalledWith({ where: { id: expected } });
+    ManufacturerDb.find.mockClear();
+  });
+
+  test('should findAll from db model', () => {
+    const expected = { limit: 1, offset: 2, where: { id: 3 } };
+    expect(Manufacturer.findAll.bind(null, expected.limit, expected.offset, expected.where)).not.toThrow();
+    expect(ManufacturerDb.findAll).toHaveBeenCalledWith(expected);
+    ManufacturerDb.findAll.mockClear();
+  });
+
+  test('should getProducts', () => {
+    const manufacturer = { getProducts: jest.fn(() => true) };
+    expect(Manufacturer.getProducts(manufacturer)).toBeTruthy();
+    expect(manufacturer.getProducts).toHaveBeenCalled();
+  });
 });
-
-// test('author findSub should find from db model', () => {
-//   const expected = 1;
-//   expect(Author.findSub.bind(null, expected)).not.toThrow();
-//   expect(AuthorDb.find).toHaveBeenCalledWith({ where: { sub: expected } });
-//   AuthorDb.find.mockClear();
-// });
-
-// test('author find should find from db model', () => {
-//   const expected = 1;
-//   expect(Author.find.bind(null, expected)).not.toThrow();
-//   expect(AuthorDb.find).toHaveBeenCalledWith({ where: { id: expected } });
-//   AuthorDb.find.mockClear();
-// });
-
-// test('author findAll should not throw', () => {
-//   const expected = { limit: 1, offset: 2, where: { id: 1 } };
-//   expect(Author.findAll.bind(null, expected.limit, expected.offset, expected.where)).not.toThrow();
-//   expect(AuthorDb.findAll).toHaveBeenCalledWith(expected);
-//   AuthorDb.findAll.mockClear();
-// });
-
-// test('author getPosts should get Posts', () => {
-//   const author = { getPosts: jest.fn(() => true) };
-//   expect(Author.getPosts(author)).toBeTruthy();
-//   expect(author.getPosts).toHaveBeenCalled();
-// });

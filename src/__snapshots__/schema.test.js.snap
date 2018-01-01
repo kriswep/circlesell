@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`schema definition should be the right one 1`] = `
+"schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  manufacturers(offset: Int!, limit: Int!, id: Int, name: String): [Manufacturer]
+  manufacturer(id: Int!): Manufacturer
+  products(offset: Int!, limit: Int!, id: Int, name: String): [Product]
+  product(id: Int!): Product
+  quantitys(offset: Int!, limit: Int!, id: Int, name: String): [Quantity]
+  quantity(id: Int!): Quantity
+}
+
+type Mutation {
+  setQuantity(id: Int!, amount: Int): Quantity
+}
+
+type Manufacturer {
+  id: Int!
+  name: String
+  products: [Product]
+}
+
+type Product {
+  id: Int!
+  name: String
+  description: String
+  manufacturer: Manufacturer
+  amount: Quantity
+}
+
+type Quantity {
+  id: Int!
+  amount: Int
+  product: Product
+}
+"
+`;

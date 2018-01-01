@@ -15,12 +15,12 @@ const Quantity = {
     return quantity.getProduct();
   },
   setQuantity(id, amount) {
-    return db.Quantity.find({ where: { id } }).then(quantity =>
-      quantity
-        .update({
+    return db.Quantity.find({ where: { id } })
+      .then(quantity =>
+        quantity.update({
           amount,
-        })
-        .then(() => db.Quantity.find({ where: { id } })));
+        }))
+      .then(() => db.Quantity.find({ where: { id } }));
   },
 };
 
