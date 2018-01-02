@@ -11,11 +11,11 @@ const Product = {
       where: args,
     });
   },
-  getManufacturer(post) {
-    return post.getManufacturer();
+  getManufacturer(product) {
+    return product.getManufacturer();
   },
-  getAmount(post) {
-    return post.getQuantity();
+  getAmount(product) {
+    return product.getQuantity();
   },
 };
 
