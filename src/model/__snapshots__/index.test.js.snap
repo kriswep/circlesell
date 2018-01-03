@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`db model definitions should be the right ones 1`] = `
+Object {
+  "Manufacturer": [Function],
+  "Product": [Function],
+  "Quantity": [Function],
+}
+`;
