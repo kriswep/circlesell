@@ -1,4 +1,4 @@
-/* globals test expect jest */
+/* globals test expect */
 import resolvers from './resolvers';
 
 test('resolvers should have Query and Mutations attributes', () => {

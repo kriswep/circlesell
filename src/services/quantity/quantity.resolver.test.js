@@ -37,10 +37,11 @@ test('quantitys query should findAll', () => {
   Quantity.findAll.mockClear();
 });
 
-test('setQuantity mutation should setQuantity', () => {
+test('setQuantity mutation should setQuantity', async () => {
   const expected = { id: 1, amount: 2 };
   const user = { user: 3 };
-  expect(resolvers.Mutation.setQuantity.bind(null, '', expected, user)).not.toThrow();
+  await resolvers.Mutation.setQuantity('', expected, { user });
+
   expect(Quantity.setQuantity).toHaveBeenCalledWith(expected.id, expected.amount);
 
   Quantity.setQuantity.mockClear();

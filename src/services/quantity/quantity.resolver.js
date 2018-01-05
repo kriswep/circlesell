@@ -1,6 +1,7 @@
 import { omit } from 'lodash';
 
 import Quantity from './connector';
+import { requiresAuth } from '../../utils/permissions';
 
 export default {
   Query: {
@@ -12,11 +13,8 @@ export default {
     },
   },
   Mutation: {
-    setQuantity: (_, { id, amount }, { user }) =>
-      // if (user && user.sub) {
-      Quantity.setQuantity(id, amount),
-    // }
-    // throw Error('need to be logged in');
+    setQuantity: requiresAuth.addResolver((_, { id, amount }, { user }) =>
+      Quantity.setQuantity(id, amount)),
   },
   Quantity: {
     product(quantity) {
