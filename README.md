@@ -22,3 +22,5 @@ Included graphiql adds auth token from localStorage key access_token. That means
 ```javascript
 localStorage.setItem('access_token', 'Bearer YOUR_TOKEN');
 ```
+
+Or use playground endpoint and set header there.

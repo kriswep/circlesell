@@ -2,6 +2,7 @@ import express from 'express';
 import serveStatic from 'serve-static';
 import path from 'path';
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
+import expressPlayground from 'graphql-playground-middleware-express';
 import bodyParser from 'body-parser';
 import { makeExecutableSchema } from 'graphql-tools';
 
@@ -102,9 +103,13 @@ server.use(
   }),
 );
 
+// compare graphiql with graphql playground
+server.use('/playground', expressPlayground({ endpoint: '/graphql' }));
+
 server.listen(PORT, IP, () => {
   console.log(`GraphQL Server running on http://localhost:${PORT}/graphql`); // eslint-disable-line
   console.log(`View GraphiQL at http://localhost:${PORT}/graphiql`); // eslint-disable-line
+  console.log(`View Playground at http://localhost:${PORT}/playground`); // eslint-disable-line
 });
 
 export default server;
