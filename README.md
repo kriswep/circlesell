@@ -17,3 +17,8 @@ Unseed DB: `npm run db:seed:undo`
 ### Note
 
 In order to test the authentication in graphiql, you need a graphiql app which lets you set headers, e.g https://github.com/skevy/graphiql-app
+Included graphiql adds auth token from localStorage key access_token. That means, you can get a valid token and add it in graphiql into localStorage, like so:
+
+```javascript
+localStorage.setItem('access_token', 'Bearer YOUR_TOKEN');
+```

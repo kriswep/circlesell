@@ -39,12 +39,25 @@ test('quantitys query should findAll', () => {
 
 test('setQuantity mutation should setQuantity', async () => {
   const expected = { id: 1, amount: 2 };
-  const user = { user: 3 };
+  const user = { sub: 3 };
   await resolvers.Mutation.setQuantity('', expected, { user });
 
   expect(Quantity.setQuantity).toHaveBeenCalledWith(expected.id, expected.amount);
 
   Quantity.setQuantity.mockClear();
+});
+
+test('setQuantity mutation not when not authenticated', async () => {
+  const expected = { id: 1, amount: 2 };
+  const user = { invalid: 1 };
+
+  let actual;
+  try {
+    await resolvers.Mutation.setQuantity('', expected, { user });
+  } catch ({ message }) {
+    actual = message;
+  }
+  expect(actual).toBe('Not authenticated');
 });
 
 test('Quantity should getProduct', () => {

@@ -69,6 +69,8 @@ server.use(
   '/graphiql',
   graphiqlExpress({
     endpointURL: '/graphql',
+    // Read auth token from localstorage on load of grapiql
+    passHeader: "'Authorization': localStorage.getItem('access_token')",
     query: `# Welcome to GraphiQL
 {
   manufacturers(limit: 100, offset: 0) {

@@ -11,5 +11,5 @@ test('requiresAuth should not throw if authenticated', async () => {
 test('requiresAuth should throw if not authenticated', async () => {
   const user = {};
 
-  expect(requiresAuth.bind(null, '', '', { user })).not.toThrow();
+  expect(requiresAuth.bind(null, '', '', { user })).toThrow('Not authenticated');
 });
